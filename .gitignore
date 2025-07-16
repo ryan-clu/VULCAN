@@ -1,0 +1,29 @@
+# === Java build artifacts ===
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# === Build directories ===
+/bin/
+/build/
+/out/
+/target/
+
+# === IDE-specific ===
+.vscode/
+*.iml
+.idea/
+*.ipr
+*.iws
+
+# === OS-specific files ===
+.DS_Store
+Thumbs.db
+
+# === Temporary/Backup files ===
+*.tmp
+*.swp
+*.bak
+*.~*

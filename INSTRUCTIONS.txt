@@ -1,0 +1,19 @@
+To run JavaScript code
+---
+
+This will execute the JavaScript file and output the results 
+of your console.log statements:
+
+`node algorithm.js`
+
+
+To run Java code
+---
+
+(1) First, navigate to the appropriate directory and compile the Java file: 
+
+`javac Algorithm.java`
+
+(2) Then, run the compiled Java program:
+
+`java Algorithm`

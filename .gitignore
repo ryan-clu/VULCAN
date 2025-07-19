@@ -1,29 +1,50 @@
-# === Java build artifacts ===
+# Purpose of this .gitignore file is to avoid tracking any unnecessary, 
+# machine-specific, or temporary files and for
+# Java + JavaScript + VS Code + etc. (general sanity)
+
+# === Java ===
 *.class
 *.jar
 *.war
 *.ear
 *.log
 
-# === Build directories ===
+# === Java build directories ===
 /bin/
 /build/
 /out/
 /target/
 
-# === IDE-specific ===
-.vscode/
+# === Java project config ===
 *.iml
 .idea/
 *.ipr
 *.iws
 
+# === Node.js / JavaScript ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+
+# === JS/TS/React build output ===
+dist/
+build/
+
+# === Prettier and ESLint cache ===
+.prettier-cache/
+.eslintcache
+
+# === VS Code ===
+.vscode/
+
 # === OS-specific files ===
 .DS_Store
 Thumbs.db
 
-# === Temporary/Backup files ===
-*.tmp
+# === Temporary/editor/backup files ===
 *.swp
+*.tmp
 *.bak
-*.~*
+*~

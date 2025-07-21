@@ -18,3 +18,8 @@ maxValue([42]); // -> 42
 maxValue([1000, 8]); // -> 1000
 maxValue([1000, 8, 9000]); // -> 9000
 maxValue([2, 5, 1, 1, 4]); // -> 5
+
+/* Complexity Analysis
+Time: O(n) T
+Space: O(1) S
+*/

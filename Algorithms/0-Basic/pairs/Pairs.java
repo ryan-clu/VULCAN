@@ -27,3 +27,5 @@ public class Pairs {
     }
     
 }
+
+// Complexity Analysis: O(n^2) T, O(n^2) S

@@ -3,11 +3,12 @@ anagrams
 
 Write a method, anagrams, that takes in two strings as arguments. 
 The method should return a boolean indicating whether or not the 
-strings are anagrams. Anagrams are strings that contain the same characters, but in any order.
+strings are anagrams. Anagrams are strings that contain the 
+same characters, but in any order.
 
 JAVA
 
-Source.anagrams("restful", "fluster"); // -> true
-Source.anagrams("cats", "tocs"); // -> false
-Source.anagrams("monkeyswrite", "newyorktimes"); // -> true
-Source.anagrams("elbow", "below"); // -> true
+anagrams("restful", "fluster"); // -> true
+anagrams("cats", "tocs"); // -> false
+anagrams("monkeyswrite", "newyorktimes"); // -> true
+anagrams("elbow", "below"); // -> true

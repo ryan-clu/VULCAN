@@ -1,6 +1,7 @@
 import java.util.HashMap;
 
 public class Anagrams {
+    
     private static boolean anagramsMethod(String word1, String word2) {
         HashMap<Character, Integer> word1freqHash = freqMap(word1);
         HashMap<Character, Integer> word2freqHash = freqMap(word2);
@@ -30,6 +31,8 @@ public class Anagrams {
         anagramsMethod("elbow", "below"); // -> true
     }
 }
+
+// JAVA- O(n+m) T, O(n+m) S
 
 /*
  * Approach

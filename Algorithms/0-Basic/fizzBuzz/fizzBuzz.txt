@@ -8,7 +8,7 @@ if the number is divisible by 3, make the element "fizz"
 if the number is divisible by 5, make the element "buzz"
 if the number is divisible by 3 and 5, make the element "fizzbuzz"
 
-JAVA
+JAVA/JS
 
 fizzBuzz(11); // -> [1,2,"fizz",4,"buzz","fizz",7,8,"fizz","buzz",11]
 fizzBuzz(2); // -> [1,2]
@@ -30,5 +30,7 @@ fizzBuzz(16); // -> [
 //   "fizzbuzz",
 //   16
 // ]
+
+
 
 

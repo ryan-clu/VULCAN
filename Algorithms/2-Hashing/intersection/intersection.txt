@@ -1,0 +1,29 @@
+intersection
+---
+
+Write a method, intersection, that takes in two Lists, 
+a,b, as arguments. The method should return a new List 
+containing elements that are in both of the two Lists.
+
+You may assume that each input List does not contain duplicate elements.
+
+JAVA
+
+List<Integer> a = List.of(4,2,1,6);
+List<Integer> b = List.of(3,6,9,2,10);
+intersection(a, b) // -> [2,6]
+
+List<Integer> a = List.of(2,4,6);
+List<Integer> b = List.of(4,2);
+intersection(a, b) // -> [2,4]
+
+List<Integer> a = List.of(4,2,1);
+List<Integer> b = List.of(1,2,4,6);
+intersection(a, b) // -> [1,2,4]
+
+List<Integer> a = List.of(0,1,2);
+List<Integer> b = List.of(10,11);
+intersection(a, b) // -> []
+
+
+

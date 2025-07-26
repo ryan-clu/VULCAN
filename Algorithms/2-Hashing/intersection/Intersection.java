@@ -1,21 +1,21 @@
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
+// HashSet solution
 public class Intersection {
 
   public static List<Integer> intersection(List<Integer> a, List<Integer> b) {
-    Map<Integer, Integer> elemA = new HashMap<>();
+    Set<Integer> seenElemsA = new HashSet<>();
     List<Integer> intersectList = new ArrayList<>();
 
-    for (int i = 0; i < a.size(); i += 1) {
-      int currElemA = a.get(i);
-      elemA.put(currElemA, i);
+    for (int currElemA : a) {
+      seenElemsA.add(currElemA);
     }
 
     for (int currElemB : b) {
-      if (elemA.containsKey(currElemB)) {
+      if (seenElemsA.contains(currElemB)) {
         intersectList.add(currElemB);
       }
     }
@@ -36,19 +36,3 @@ public class Intersection {
 }
 
 // O(n+m) T, O(n) S
-
-/*
- * Approach
- * 
- * Keys:
- * - Don't want to loop over one list's elements and loop over the
- * other lists elements for matches. This is the brute force approach
- * and is O(n^2).
- * - Want to utilize a HashMap DS for quick lookup/verification ability.
- * 
- * Steps:
- * - Loop over first List and capture elements as keys in HashMap DS.
- * - Loop over second List and if element is in HashMap DS, then
- * push that common element that exists in both lists to a new List
- * that I generate for return.
- */

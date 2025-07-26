@@ -1,0 +1,123 @@
+Map & HashMap
+---
+
+- Crash course of Java’s Map interface and the most commonly used implementation: HashMap.
+
+
+✅ What Is a Map in Java?
+- A Map<K, V> is a key-value pair data structure. You use it to associate keys (K) with values (V).
+
+Map<String, Integer> wordFreq = new HashMap<>();
+
+K = key type
+V = value type
+✅ Keys are unique
+✅ Values can be duplicated
+❌ Not a subtype of Collection (it’s its own hierarchy)
+
+
+
+✅ Most Commonly Used: HashMap
+
+Map<String, Integer> counts = new HashMap<>();
+
+✅ Unordered
+✅ Fast get(), put(), remove() (avg O(1))
+❌ No guaranteed order of keys
+
+
+
+✅ When and Why to Use a Map
+| Use Case                  | Why `Map` Helps                   |
+| ------------------------- | --------------------------------- |
+| Frequency counting        | `charFreq.getOrDefault(c, 0) + 1` |
+| Caching/memoization       | Store computed results            |
+| Key-based lookup          | Fast, direct access via key       |
+| Grouping by categories    | `Map<String, List<String>>`       |
+| Efficient searching by ID | E.g., `Map<Integer, Employee>`    |
+
+
+
+🚀 Common Methods
+| Method                       | Description                           |
+| ---------------------------- | ------------------------------------- |
+| `put(K key, V value)`        | Adds or updates a key-value pair      |
+| `get(K key)`                 | Returns value or `null` if key absent |
+| `getOrDefault(K key, V def)` | Returns value or default              |
+| `containsKey(K key)`         | Check if key exists                   |
+| `containsValue(V value)`     | Check if value exists                 |
+| `remove(K key)`              | Removes key-value pair                |
+| `size()`                     | Number of entries                     |
+| `isEmpty()`                  | Checks if map is empty                |
+| `clear()`                    | Empties the map                       |
+
+
+
+🔥 Quick Example
+
+Map<String, Integer> ages = new HashMap<>();
+
+ages.put("Alice", 30);
+ages.put("Bob", 25);
+
+System.out.println(ages.get("Alice")); // 30
+System.out.println(ages.containsKey("Eve")); // false
+
+
+
+🔁 Iterating Over Maps
+
+🔹 Option 1: Using entrySet()
+
+for (Map.Entry<String, Integer> entry : ages.entrySet()) {
+    System.out.println(entry.getKey() + ": " + entry.getValue());
+}
+
+🔹 Option 2: Just keys or values
+
+for (String name : ages.keySet()) {
+    System.out.println(name);
+}
+
+for (Integer age : ages.values()) {
+    System.out.println(age);
+}
+
+
+
+🧠 Big-O Performance (HashMap)
+| Operation  | Time     |
+| ---------- | -------- |
+| `get()`    | O(1) avg |
+| `put()`    | O(1) avg |
+| `remove()` | O(1) avg |
+| Iteration  | O(n)     |
+
+Worst case is O(n), but that’s rare with a good hash function.
+
+
+
+🧠 Common Map Types (you should know)
+| Type            | Ordered? | Sorted? | Notes                          |
+| --------------- | -------- | ------- | ------------------------------ |
+| `HashMap`       | ❌ No    | ❌ No  | Fastest, most common           |
+| `LinkedHashMap` | ✅ Yes   | ❌ No  | Maintains insertion order      |
+| `TreeMap`       | ❌ No    | ✅ Yes | Sorted by key (Red-Black Tree) |
+
+When to use them:
+🔹 Use HashMap for general fast lookups
+🔹 Use LinkedHashMap when order matters (e.g. in an LRU cache)
+🔹 Use TreeMap when you need sorted keys or range queries
+
+Summary Cheatsheet
+| Feature      | HashMap            | LinkedHashMap      | TreeMap             |
+| ------------ | ------------------ | ------------------ | ------------------- |
+| Ordered?     | ❌ No              | ✅ Insertion      | ❌ No (sorted)       |
+| Sorted?      | ❌ No              | ❌ No             | ✅ Yes               |
+| Speed        | ✅ Fastest         | ⚠️ Slightly slower| ❌ Slower (O(log n)) |
+| Key type     | Any object         | Any object         | Must be Comparable  |
+| Allows nulls | ✅ Yes (1 null key)| ✅ Yes            | ❌ No null keys      |
+
+
+
+

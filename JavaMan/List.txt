@@ -1,0 +1,120 @@
+List & ArrayList
+---
+
+- Crash course of Java’s List interface and the most commonly used implementation: ArrayList.
+
+🔹 1. What They Are
+| Term        | Description                                                                |
+| ----------- | -------------------------------------------------------------------------- |
+| `List`      | Interface representing an **ordered, indexable** collection                |
+| `ArrayList` | Most commonly used implementation of `List`, backed by a **dynamic array** |
+
+
+
+✅ 2. How to Declare and Use
+
+Preferred (interface + implementation):
+
+List<String> names = new ArrayList<>();
+
+- You get flexibility (can switch to LinkedList later)
+- This is best practice in Java
+
+Add elements:
+
+names.add("Alice");
+names.add("Bob");
+
+
+
+🔹 3. Common Methods
+| Method                      | Description                        |
+| --------------------------- | ---------------------------------- |
+| `add(E element)`            | Adds to end                        |
+| `add(int index, E element)` | Adds at index                      |
+| `get(int index)`            | Retrieves element                  |
+| `set(int index, E element)` | Replaces element at index          |
+| `remove(int index)`         | Removes by index                   |
+| `remove(Object o)`          | Removes first occurrence of object |
+| `size()`                    | Number of elements                 |
+| `contains(Object o)`        | Checks if element exists           |
+| `isEmpty()`                 | Checks if list is empty            |
+| `clear()`                   | Removes all elements               |
+| `indexOf(Object o)`         | Returns index of first match or -1 |
+
+
+
+✅ Example Usage:
+
+List<Integer> nums = new ArrayList<>();
+nums.add(10);
+nums.add(20);
+nums.add(1, 15);  // Insert 15 at index 1
+
+System.out.println(nums); // [10, 15, 20]
+
+nums.remove(Integer.valueOf(15)); // Removes by value
+System.out.println(nums.contains(20)); // true
+
+
+
+
+🔍 4. List vs ArrayList — Why Declare Using the Interface?
+
+List<String> list = new ArrayList<>();
+
+Pros:
+- You can switch to LinkedList, CopyOnWriteArrayList, etc., without changing method signatures
+- Encourages abstraction and interface-driven design
+- Use concrete types (like ArrayList<String>) only for very specific logic tied to the implementation.
+
+
+
+🔁 5. Iterating Through a List
+
+for (String name : names) {
+    System.out.println(name);
+}
+
+// Or with index:
+for (int i = 0; i < names.size(); i++) {
+    System.out.println(names.get(i));
+}
+
+
+
+🧠 6. Performance Characteristics (ArrayList)
+
+| Operation       | Time Complexity         |
+| --------------- | ----------------------- |
+| `get(index)`    | O(1) ✅ Fast             |
+| `add(element)`  | Amortized O(1) ✅        |
+| `add(index)`    | O(n) ❌ (shift elements) |
+| `remove(index)` | O(n) ❌ (shift elements) |
+| `contains(x)`   | O(n) ❌ (linear search)  |
+
+So:
+✅ Great for reading/access by index
+❌ Not great for frequent insertions/removals at arbitrary positions
+
+
+
+💡 7. Handy Initialization Patterns
+
+One-liner with values:
+List<Integer> nums = new ArrayList<>(List.of(1, 2, 3));
+
+Immutable:
+List<Integer> fixed = List.of(1, 2, 3); // Can't modify!
+
+
+
+✅ Summary Cheatsheet
+| Feature       | `List`    | `ArrayList`                                 |
+| ------------- | --------- | ------------------------------------------- |
+| Type          | Interface | Implementation                              |
+| Ordered?      | ✅ Yes     | ✅ Yes                                       |
+| Allows dupes? | ✅ Yes     | ✅ Yes                                       |
+| Indexed?      | ✅ Yes     | ✅ Yes                                       |
+| Backed by     | —         | Dynamic array                               |
+| Thread-safe   | ❌ No      | ❌ No (use `CopyOnWriteArrayList` if needed) |

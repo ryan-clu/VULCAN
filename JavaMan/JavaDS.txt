@@ -1,0 +1,50 @@
+Top Java Collections/Data Structures for Interviews & Dev Work
+---
+
+1. List / ArrayList
+✅ Ordered, indexed, resizable array
+🧠 Great for: general-purpose lists, dynamic arrays, access by index
+
+2. Set / HashSet
+✅ Unordered, unique values
+🧠 Great for: fast lookups, deduplication, membership checks
+
+3. Map / HashMap
+✅ Key-value storage, super fast lookups
+🧠 Great for: frequency counts, memoization, lookup tables
+
+4. LinkedList
+✅ Doubly-linked list
+🧠 Great for: frequent insertions/deletions, implementing stacks/queues
+
+5. Stack
+✅ LIFO (Last In, First Out), Deque or Stack class
+🧠 Great for: recursion, expression parsing, backtracking
+
+6. Queue / Deque
+✅ FIFO (Queue) or double-ended (Deque), LinkedList or ArrayDeque
+🧠 Great for: breadth-first search (BFS), scheduling, buffers
+
+7. TreeSet / TreeMap
+✅ Sorted structures
+🧠 Great for: ordered sets/maps, range queries
+
+Backed by red-black trees, not hash-based
+
+8. PriorityQueue (Heap)
+✅ Min/max priority heap
+🧠 Great for: greedy algorithms, Dijkstra’s, top-k problems
+
+
+
+JavaScript Counterparts
+---
+
+| Java            | JavaScript Equivalent                   |
+| --------------- | --------------------------------------- |
+| `ArrayList`     | `Array`                                 |
+| `HashMap`       | `Object`, `Map`                         |
+| `HashSet`       | `Set`                                   |
+| `Stack`         | `Array.push()/pop()`                    |
+| `Queue`         | `Array.push()/shift()`                  |
+| `PriorityQueue` | N/A (you’d build manually or use a lib) |

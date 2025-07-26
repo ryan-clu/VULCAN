@@ -35,18 +35,19 @@ fruits.add("apple"); // ignored, no duplicate added
 
 
 🚀 Commonly Used Methods (on both Set and HashSet)
-| Method                           | Description                                                               |
-| -------------------------------- | ------------------------------------------------------------------------- |
-| `add(E element)`                 | Adds item (returns `false` if it was already present)                     |
-| `contains(Object o)`             | Checks if an item exists                                                  |
-| `remove(Object o)`               | Removes the element (if present)                                          |
-| `isEmpty()`                      | Checks if the set is empty                                                |
-| `size()`                         | Returns number of elements                                                |
-| `clear()`                        | Empties the set                                                           |
-| `for (E item : set)`             | Iterate over all elements                                                 |
-| `set.addAll(Collection<?> c)`    | Adds all elements from another collection                                 |
-| `set.retainAll(Collection<?> c)` | Retains only the elements also in the given collection (set intersection*) |
-| `set.removeAll(Collection<?> c)` | Removes all elements in the given collection (set difference*)             |
+| Method                           | Description                                                           | Time Complexity                                         |
+| -------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------- |
+| `add(E element)`                 | Adds item (returns `false` if already present)                        | **O(1)** avg, **O(n)** worst                            |
+| `contains(Object o)`             | Checks if an item exists                                              | **O(1)** avg, **O(n)** worst                            |
+| `remove(Object o)`               | Removes the element (if present)                                      | **O(1)** avg, **O(n)** worst                            |
+| `isEmpty()`                      | Checks if the set is empty                                            | **O(1)**                                                |
+| `size()`                         | Returns number of elements                                            | **O(1)**                                                |
+| `clear()`                        | Empties the set                                                       | **O(n)**                                                |
+| `for (E item : set)`             | Iterate over all elements                                             | **O(n)**                                                |
+| `set.addAll(Collection<?> c)`    | Adds all elements from another collection                             | **O(m)** — where *m* is the size of `c`                 |
+| `set.retainAll(Collection<?> c)` | Retains only elements also in the given collection (set intersection) | **O(n)** to **O(n + m)** depending on backing structure |
+| `set.removeAll(Collection<?> c)` | Removes all elements in the given collection (set difference)         | **O(m)** to **O(n + m)** depending on backing structure |
+
 
 
 🧠 Key Usage Implications

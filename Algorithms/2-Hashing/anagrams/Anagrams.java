@@ -43,3 +43,10 @@ public class Anagrams {
  * - If they are equal, which means they have the exact same letters,
  * then return true.
  */
+
+
+/*
+ * Learning Keys
+ * 
+ * - .equals()
+ */

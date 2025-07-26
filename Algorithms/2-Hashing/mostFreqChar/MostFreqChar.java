@@ -6,19 +6,16 @@ public class MostFreqChar {
   // Driver Function
   public static char mostFreqChar(String word) {
 
+    Map<Character, Integer> wordCharFreq = charFreq(word);
     char mostFreqLetter = '\0'; // null character
     int currMaxFreq = 0;
 
-    Map<Character, Integer> wordCharFreq = charFreq(word);
+    for (char letter : word.toCharArray()) {
+      int letterFreq = wordCharFreq.get(letter);
 
-    // for (Character key : wordCharFreq.keySet()) {};
-    for (Map.Entry<Character, Integer> entry : wordCharFreq.entrySet()) {
-      char letterKey = entry.getKey();
-      int freqValue = entry.getValue();
-
-      if (freqValue > currMaxFreq) {
-        currMaxFreq = freqValue;
-        mostFreqLetter = letterKey;
+      if (letterFreq > currMaxFreq) {
+        currMaxFreq = letterFreq;
+        mostFreqLetter = letter;
       }
     }
 
@@ -54,9 +51,19 @@ public class MostFreqChar {
 
 /*
  * Approach
+ * 
  * - Loop over each char of the inputted word and capture
- * the freq of each char in a HashMap.
- * - Loop over the keys (chars of word) of the HashMap
- * and the highest freq character gets returned.
+ * the freq of each unique char of the word in a HashMap.
+ * - Loop over the letters of the word again (because we want
+ * to process the letters of the word in order) to see which 
+ * letter has the highest frequency according to our HashMap. 
  */
+
+/*
+ * Learning Keys
+ * 
+ * - char type null character
+ * - keySet(), entrySet()
+ * 
+*/
 

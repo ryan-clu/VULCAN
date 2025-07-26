@@ -1,0 +1,86 @@
+Set & HashSet
+---
+
+- Crash summary of Java’s Set interface and the most commonly used implementation: HashSet.
+
+
+✅ What Is a Set in Java?
+- A Set is a collection that contains no duplicate elements.
+
+Set<Type> mySet = new HashSet<>();
+
+- No duplicates
+- No guaranteed order (unless you use LinkedHashSet or TreeSet)
+- Very fast for basic operations: add, remove, contains (O(1) avg in HashSet)
+
+
+
+✅ When and Why to Use a Set
+| Use Case             | Why Set Is Good                                                   |
+| -------------------- | ----------------------------------------------------------------- |
+| Eliminate duplicates | Automatically ensures uniqueness                                  |
+| Fast lookup          | `contains()` is very fast (hash-based)                            |
+| Track seen elements  | Useful in algorithms (e.g. `Set<Character>` to check for repeats) |
+| Membership checking  | Similar to how you'd use a `Set` in Python or JS                  |
+
+
+
+✅ Common Implementation: HashSet
+
+Set<String> fruits = new HashSet<>();
+fruits.add("apple");
+fruits.add("banana");
+fruits.add("apple"); // ignored, no duplicate added
+
+
+
+🚀 Commonly Used Methods (on both Set and HashSet)
+| Method                           | Description                                                               |
+| -------------------------------- | ------------------------------------------------------------------------- |
+| `add(E element)`                 | Adds item (returns `false` if it was already present)                     |
+| `contains(Object o)`             | Checks if an item exists                                                  |
+| `remove(Object o)`               | Removes the element (if present)                                          |
+| `isEmpty()`                      | Checks if the set is empty                                                |
+| `size()`                         | Returns number of elements                                                |
+| `clear()`                        | Empties the set                                                           |
+| `for (E item : set)`             | Iterate over all elements                                                 |
+| `set.addAll(Collection<?> c)`    | Adds all elements from another collection                                 |
+| `set.retainAll(Collection<?> c)` | Retains only the elements also in the given collection (set intersection*) |
+| `set.removeAll(Collection<?> c)` | Removes all elements in the given collection (set difference*)             |
+
+
+🧠 Key Usage Implications
+| Characteristic            | What It Means                                         |
+| ------------------------- | ----------------------------------------------------- |
+| ❌ No duplicates           | Adding same element again does nothing                |
+| ❌ No order (in `HashSet`) | Insertion order is *not preserved*                    |
+| ✅ Fast lookup             | Uses hash table internally — constant time operations |
+| ❌ No indexing             | You can’t use `.get(0)` — must iterate                |
+
+
+🔥 Quick Example
+
+Set<Integer> seen = new HashSet<>();
+int[] nums = {1, 2, 3, 2, 1};
+
+for (int num : nums) {
+    if (seen.contains(num)) {
+        System.out.println("Duplicate found: " + num);
+    } else {
+        seen.add(num);
+    }
+}
+
+
+🧠 Bonus: Other Set Types
+| Type            | Ordered? | Sorted? | Notes                                                    |
+| --------------- | -------- | ------- | -------------------------------------------------------- |
+| `HashSet`       | ❌ No     | ❌ No    | Fastest, most commonly used                              |
+| `LinkedHashSet` | ✅ Yes    | ❌ No    | Maintains insertion order                                |
+| `TreeSet`       | ❌ No     | ✅ Yes   | Automatically sorted (uses `Comparable` or `Comparator`) |
+
+
+✅ TL;DR
+- Use HashSet when you need uniqueness and fast lookup
+- No duplicates, no order, no indexing
+- Most important methods: add, contains, remove, size, for-each loop

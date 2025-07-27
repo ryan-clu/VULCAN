@@ -1,0 +1,16 @@
+all unique
+---
+
+Write a method, allUnique, that takes in an list. 
+The method should return a boolean indicating whether
+ or not the list contains unique items.
+
+JAVA
+
+allUnique(List.of("q", "r", "s", "a")); // -> true
+allUnique(List.of("q", "r", "s", "a", "r", "z")); // -> false
+allUnique(List.of("red", "blue", "yellow", "green", "orange")); // -> true
+allUnique(List.of("cat", "cat", "dog")); // -> false
+allUnique(List.of("a", "u", "t", "u", "m", "n")); // -> false
+
+

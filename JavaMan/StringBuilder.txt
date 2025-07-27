@@ -1,0 +1,61 @@
+StringBuilder
+---
+
+✅ What is StringBuilder?
+- StringBuilder is a mutable sequence of characters — you can append to it, delete from it, etc., 
+without creating new objects.
+- String is immutable — once created, its contents can't be changed.
+
+- StringBuilder is one of the most useful classes in Java for working with strings efficiently. 
+It's especially critical in loops or when building strings dynamically, like in parsing, formatting, or generating output.
+
+
+
+🧠 Why StringBuilder?
+- Strings in Java are immutable, meaning once created, they cannot be changed. Every time you do:
+
+str += "abc";
+
+Java creates a new String object, which is inefficient inside loops or large operations.
+
+- StringBuilder avoids this by creating a mutable character sequence that you can build on efficiently.
+
+
+
+🛠️ Commonly Used Methods
+| Method                | What it does                    | Example                     | Time Complexity    |
+| --------------------- | ------------------------------- | --------------------------- | ------------------ |
+| `.append(...)`        | Adds to the end                 | `sb.append("abc");`         | **O(1)** amortized |
+| `.insert(index, ...)` | Inserts at an index             | `sb.insert(0, "Hi ");`      | **O(n)**           |
+| `.delete(start, end)` | Deletes substring \[start, end) | `sb.delete(2, 5);`          | **O(n)**           |
+| `.reverse()`          | Reverses the characters         | `sb.reverse();`             | **O(n)**           |
+| `.toString()`         | Converts to regular `String`    | `String s = sb.toString();` | **O(n)**           |
+| `.setCharAt(i, c)`    | Changes char at index           | `sb.setCharAt(0, 'X');`     | **O(1)**           |
+| `.length()`           | Gets length of builder          | `sb.length();`              | **O(1)**           |
+| `.charAt(i)`          | Gets char at index `i`          | `sb.charAt(1);`             | **O(1)**           |
+
+
+
+✅ Basic Example
+
+StringBuilder sb = new StringBuilder();
+
+sb.append("Hello");
+sb.append(" ");
+sb.append("World!");
+
+System.out.println(sb.toString()); // Output: Hello World!
+
+
+
+📈 Performance Comparison
+
+String s = "";
+for (int i = 0; i < 10000; i++) {
+    s += "a"; // BAD: Creates a new String each time
+}
+
+StringBuilder sb = new StringBuilder();
+for (int i = 0; i < 10000; i++) {
+    sb.append("a"); // GOOD: Efficient and fast
+}

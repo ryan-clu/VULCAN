@@ -1,0 +1,17 @@
+Is Palindrome
+---
+
+Write a method, isPalindrome, that takes in 
+a string and returns a boolean indicating 
+whether or not the string is the same forwards 
+and backwards.
+
+JAVA
+
+isPalindrome("pop") // -> true
+isPalindrome("pops") // -> false
+isPalindrome("kayak") // -> true
+isPalindrome("boot") // -> false
+isPalindrome("rotator") // -> true
+isPalindrome("abcbca") // -> false
+isPalindrome("") // -> true

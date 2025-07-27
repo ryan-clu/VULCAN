@@ -1,0 +1,41 @@
+Two Pointer 
+---
+
+🔹 Two-pointer algorithms are typically bucketed under Array / ArrayList problems, because:
+
+- They require index-based access, which arrays and ArrayLists both support
+- They rely on ordered elements (which Set, Map, and HashMap do not guarantee)
+- They're often used for searching, partitioning, and optimization over arrays/lists
+
+
+
+✅ Common Use Cases for Two-Pointer Techniques
+| Pattern / Problem Type                  | Description / Example                                            |
+| --------------------------------------- | ---------------------------------------------------------------- |
+| **Opposite ends** (`left` & `right`)    | Used in sorted arrays — e.g., finding a pair that sums to target |
+| **Fast/slow pointers** (a.k.a. Floyd’s) | Cycle detection in linked lists                                  |
+| **Sliding window**                      | Maintain subarray/window of certain size or constraint           |
+| **Duplicate removal**                   | In-place de-dupe of sorted array                                 |
+| **Partitioning / Reversal**             | Reverse array, Dutch national flag, etc.                         |
+
+
+
+✅ Data Structures That Work with Two Pointers
+| Structure      | Valid? | Why                        |
+| -------------- | ------ | -------------------------- |
+| `Array[]`      | ✅      | Indexable in O(1)          |
+| `ArrayList<>`  | ✅      | Also indexable in O(1)     |
+| `LinkedList<>` | ❌      | No efficient random access |
+| `Set`          | ❌      | No order, no indexing      |
+| `Map`          | ❌      | Key-based, not indexable   |
+
+
+
+🧠 Common Two-Pointer Algo Questions
+- Two Sum (sorted input)
+- Container With Most Water
+- Trapping Rain Water
+- Remove Duplicates from Sorted Array
+- Palindrome Check
+- Sorted Squares
+- Minimum Window Substring (hybrid: sliding window + map)

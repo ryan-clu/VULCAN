@@ -1,0 +1,38 @@
+intersection with dupes
+---
+
+Write a method, intersectionWithDupes, that 
+takes in two lists, a,b, as arguments. 
+The method should return a new list containing 
+elements that are common to both input lists. 
+The elements in the result should appear as many 
+times as they occur in both input lists.
+
+You can return the result in any order.
+
+JAVA
+
+intersectionWithDupes(
+  List.of("a", "b", "c", "b"), 
+  List.of("x", "y", "b", "b")
+); // -> ["b", "b"]
+
+intersectionWithDupes(
+  List.of("q", "b", "m", "s", "s", "s"), 
+  List.of("s", "m", "s")
+); // -> ["m", "s", "s"]
+
+intersectionWithDupes(
+  List.of("p", "r", "r", "r"), 
+  List.of("r")
+); // -> ["r"]
+
+intersectionWithDupes(
+  List.of("t", "v", "u"), 
+  List.of("g", "e", "d", "f")
+); // -> [ ]
+
+intersectionWithDupes(
+  List.of("a", "a", "a", "a", "a", "a"), 
+  List.of("a", "a", "a", "a")
+); // -> ["a", "a", "a", "a"]

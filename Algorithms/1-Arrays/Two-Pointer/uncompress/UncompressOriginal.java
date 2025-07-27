@@ -1,22 +1,23 @@
 
-public class Uncompress {
+public class UncompressOriginal {
   
   public static String uncompress(String s){
     int i = 0;
     int j = 0;
 
-    StringBuilder uncompS = new StringBuilder();
+    String nums = "1234567890";
+    String uncompS = "";
 
     while (i < s.length()){
       char charAtJ = s.charAt(j);
 
-      if (Character.isDigit(charAtJ)){
+      if (nums.contains(String.valueOf(charAtJ))){
         j += 1;
       } else {
         int numToAdd = Integer.parseInt(s.substring(i, j));
 
         for (int k = 0; k < numToAdd; k += 1){
-          uncompS.append(charAtJ);
+          uncompS += charAtJ;
         }
 
         j += 1;
@@ -24,8 +25,8 @@ public class Uncompress {
       }
     }
 
-    System.out.println("This is the uncompressed string... " + uncompS.toString());
-    return uncompS.toString();
+    System.out.println("This is the uncompressed string... " + uncompS);
+    return uncompS;
   }
   public static void main(String[] args) {
     uncompress("2c3a1t"); // -> "ccaaat"

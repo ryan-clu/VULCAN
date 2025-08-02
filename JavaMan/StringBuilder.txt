@@ -67,3 +67,62 @@ StringBuilder sb = new StringBuilder();
 for (int i = 0; i < 10000; i++) {
     sb.append("a"); // GOOD: Efficient and fast
 }
+
+
+
+🛠️ STRINGBUILDER VERSUS STRING
+
+StringBuilder behaves similarly to String in many ways, including offering 
+methods like .charAt() and .length(). But it's not identical — some methods 
+differ or are missing because of mutability.
+
+
+
+✅ StringBuilder Methods Similar to String
+| Method                   | Works on `StringBuilder`? | Same as `String`? | Notes                                        |
+| ------------------------ | ------------------------- | ----------------- | -------------------------------------------- |
+| `.charAt(index)`         | ✅ Yes                     | ✅ Yes             | Get character at index                       |
+| `.length()`              | ✅ Yes                     | ✅ Yes             | Number of characters                         |
+| `.substring(start, end)` | ✅ Yes                     | ✅ Yes             | Returns a new `String`                       |
+| `.indexOf(...)`          | ❌ No                      | ✅ String only     | Use workaround                               |
+| `.contains(...)`         | ❌ No                      | ✅ String only     | Convert to string first                      |
+| `.equals(...)`           | ✅ Inherited, but ⚠        | ⚠ Different       | Compares object references unless overridden |
+| `.toString()`            | ✅ Yes                     | ✅ Yes             | Returns the built string                     |
+
+
+
+🔄 Example of Shared Methods
+StringBuilder sb = new StringBuilder("Ryan");
+
+char letter = sb.charAt(1);         // 'y'
+int len = sb.length();              // 4
+String partial = sb.substring(1, 3); // "ya"
+
+
+
+⚠️ Methods StringBuilder does not have
+StringBuilder is optimized for modifying strings, not searching or comparing them.
+
+You won’t find:
+
+.contains()
+.indexOf() (on older JDKs)
+.endsWith(), .startsWith()
+.equalsIgnoreCase()
+
+👉 To use those, convert to a String:
+
+if (sb.toString().contains("ya")) {
+    // do something
+}
+
+
+
+🧠 Summary
+| Feature                     | String | StringBuilder               |
+| --------------------------- | ------ | --------------------------- |
+| Immutable                   | ✅      | ❌ (mutable)                 |
+| `.charAt()`                 | ✅      | ✅                           |
+| `.length()`                 | ✅      | ✅                           |
+| Modifiable (`append`, etc.) | ❌      | ✅                           |
+| `.contains()`               | ✅      | ❌ (use `.toString()` first) |

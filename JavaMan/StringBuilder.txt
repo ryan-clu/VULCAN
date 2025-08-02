@@ -16,9 +16,17 @@ It's especially critical in loops or when building strings dynamically, like in 
 
 str += "abc";
 
-Java creates a new String object, which is inefficient inside loops or large operations.
+Java creates a new String object, which is inefficient inside loops or large operations. Every time you modify a 
+string (like with +=), a new String object is created in memory; a new string is allocated and all characters 
+are copied over.
+
+Why is that inefficient? Memory usage: Each intermediate string is a new object in memory.
+
 
 - StringBuilder avoids this by creating a mutable character sequence that you can build on efficiently.
+- StringBuilder stores characters in a resizable internal array.
+- When you call .append("a"), it modifies the array in-place — no new objects are created. 
+- It only allocates new memory if it runs out of internal space (and even then, it copies just once).
 
 
 

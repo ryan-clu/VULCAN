@@ -7,7 +7,7 @@ public class Uncompress {
 
     StringBuilder uncompS = new StringBuilder();
 
-    while (i < s.length()){
+    while (j < s.length()){
       char charAtJ = s.charAt(j);
 
       if (Character.isDigit(charAtJ)){

@@ -1,0 +1,30 @@
+is subsequence
+---
+
+Write a method, isSubsequence, that takes in string1 and string2. 
+The method should return a boolean indicating whether or not string1 
+is a subsequence of string2.
+
+A subsequence is a string that can be formed by deleting 0 
+or more characters from another string.
+
+JAVA
+
+isSubsequence("bde", "abcdef"); // -> true
+isSubsequence("bda", "abcdef"); // -> false
+isSubsequence("ser", "super"); // -> true
+isSubsequence("serr", "super"); // -> false
+isSubsequence("ama", "camera"); // -> true
+isSubsequence("unfun", "unfortunate"); // -> true
+isSubsequence("riverbed", "river"); // -> false
+isSubsequence("river", "riverbed"); // -> true
+
+bde
+abcdef
+
+
+0123456
+bde
+  i
+abcdef
+      j

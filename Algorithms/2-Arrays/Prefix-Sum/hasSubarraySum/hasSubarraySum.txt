@@ -1,0 +1,23 @@
+has subarray sum
+---
+
+Write a method, hasSubarraySum, that takes in a list of numbers 
+and a targetSum. The method should return a boolean indicating 
+whether or not there exists a subarray of numbers that sums 
+to the given target.
+
+A subarray is a consecutive series of one or more elements of 
+the list.
+
+
+
+JAVA
+
+hasSubarraySum(List.of(1, 3, 1, 4, 3), 8); // -> true
+hasSubarraySum(List.of(1, 3, 1, 4, 3), 2); // -> false
+hasSubarraySum(List.of(1, 3, 1, 1, 3), 2); // -> true
+hasSubarraySum(List.of(5), 5); // -> true
+hasSubarraySum(List.of(4, 2, 5, 1, 5, -2, 8), 9); // -> true
+hasSubarraySum(List.of(4, 2, 5, 1, 5, -2, 8), 10); // -> false
+hasSubarraySum(List.of(1, 1, 1, 1, 1, 1, 1, 1, 1), 9); // -> true
+hasSubarraySum(List.of(1, 1, 1, 1, 1, 1, 1, 1, 1), 10); // -> false

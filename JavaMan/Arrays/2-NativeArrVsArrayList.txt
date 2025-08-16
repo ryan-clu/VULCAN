@@ -1,0 +1,65 @@
+🆚 Native Arrays vs. ArrayList/List
+
+
+| Feature                     | `int[]` / `String[]` (Native Array) | `ArrayList<Integer>` / `List<String>` |
+| --------------------------- | ----------------------------------- | ------------------------------------- |
+| Resizable?                  | ❌ Fixed size                        | ✅ Dynamically resizable               |
+| Stores primitive types?     | ✅ Yes (`int[]`)                     | ❌ Needs wrapper (`Integer`)           |
+| Stores objects?             | ✅ Yes (`String[]`)                  | ✅ Yes                                 |
+| Syntax simplicity           | ✅ Shorter                           | ⚠️ More verbose but flexible          |
+| Performance (access)        | ✅ Fast (O(1))                       | ✅ Fast (O(1))                         |
+| Performance (insert)        | ✅ O(1) at end (if enough space)     | ⚠️ Amortized O(1) with overhead       |
+| Built-in methods?           | ❌ Manual handling (`for`, etc.)     | ✅ Rich API (`.add()`, `.remove()`)    |
+| Compatible with Streams     | ⚠️ Needs conversion                 | ✅ Fully compatible                    |
+| Common in real apps?        | ⚠️ Less common                      | ✅ Widely used in backend code         |
+| Common in algos/interviews? | ✅ Very common                       | ⚠️ Less common (but allowed)          |
+
+
+
+🧪 Code Comparison
+
+Native array:
+
+int[] nums = new int[3];
+nums[0] = 10;
+System.out.println(nums.length);
+
+ArrayList:
+
+List<Integer> nums = new ArrayList<>();
+nums.add(10);
+System.out.println(nums.size());
+
+
+
+🧠 Why Interviews Use Native Arrays
+
+- Lower-level, forces you to understand array mechanics
+- Fast and memory-efficient
+- Some problems require you to optimize space
+- Widely supported in competitive programming
+
+💡 But if the interviewer allows it (and often they do), List<T> is acceptable, 
+especially for dynamic arrays — just clarify.
+
+
+
+✅ When to Use Each
+| Use Case                                | Use Type                        |
+| --------------------------------------- | ------------------------------- |
+| Fixed-size, speed-critical              | `int[]` / `char[]`              |
+| Static data, multiple subarray access   | `int[]` with prefix sum         |
+| Dynamic storage, CRUD operations        | `ArrayList<T>`                  |
+| Backend API development, business logic | `List<T>` interfaces            |
+| Interview problems                      | `int[]`, `char[]`, or `List<T>` |
+
+
+
+🔚 Summary
+- int[] is a native and primitive array
+- String[] is a native but not primitive array
+- ArrayList<T> is a class (reference type), resizable, and widely used in apps
+
+Use native arrays when:
+- You need raw performance or compact memory usage
+- Interview problems specify fixed or tight memory constraints

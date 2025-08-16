@@ -1,0 +1,81 @@
+🧵 Java String Crash Course
+
+🔹 What is a String in Java?
+- A String is a sequence of characters (char) enclosed in double quotes.
+- Java String is a class, not a primitive — it’s immutable.
+
+String s = "hello";
+
+- Internally, it’s backed by a char[] (or byte[] in newer versions).
+- When you modify a String, Java creates a new object — this is what makes String immutable.
+
+
+
+📌 Why Immutability Matters
+✅ Thread-safe without synchronization.
+✅ Strings can be cached (e.g., String Pool).
+⚠️ Concatenation (+) in loops is inefficient → use StringBuilder.
+
+
+
+🧰 Common String Methods (with Time Complexities)
+| Method                 | Description                         | Example                       | Time Complexity |
+| ---------------------- | ----------------------------------- | ----------------------------- | --------------- |
+| `length()`             | Returns number of characters        | `s.length()`                  | O(1)            |
+| `charAt(i)`            | Get char at index `i`               | `s.charAt(2)`                 | O(1)            |
+| `substring(i, j)`      | Returns string from i to j-1        | `s.substring(1, 4)`           | O(j - i)        |
+| `indexOf(char/str)`    | First index of char/substring       | `s.indexOf('a')`              | O(n)            |
+| `lastIndexOf(...)`     | Last index of char/substring        | `s.lastIndexOf("ab")`         | O(n)            |
+| `equals(s2)`           | Checks exact equality               | `s.equals("hello")`           | O(n)            |
+| `equalsIgnoreCase(s2)` | Case-insensitive equality           | `"hi".equalsIgnoreCase("HI")` | O(n)            |
+| `compareTo(s2)`        | Lexicographic comparison            | `"abc".compareTo("abd")`      | O(n)            |
+| `contains(sub)`        | Check if substring exists           | `s.contains("foo")`           | O(n)            |
+| `startsWith(prefix)`   | Checks if string starts with prefix | `s.startsWith("abc")`         | O(k)            |
+| `endsWith(suffix)`     | Checks if string ends with suffix   | `s.endsWith(".com")`          | O(k)            |
+| `toCharArray()`        | Converts string to `char[]`         | `s.toCharArray()`             | O(n)            |
+| `split(regex)`         | Splits string by delimiter          | `s.split(" ")`                | O(n)            |
+| `replace(a, b)`        | Replace all `a` with `b`            | `s.replace('a', 'b')`         | O(n)            |
+| `trim()`               | Removes leading/trailing whitespace | `s.trim()`                    | O(n)            |
+| `toLowerCase()`        | Convert to lowercase                | `s.toLowerCase()`             | O(n)            |
+| `toUpperCase()`        | Convert to uppercase                | `s.toUpperCase()`             | O(n)            |
+
+
+
+🧪 Example Use:
+String name = "  Jane M.  ";
+String cleaned = name.trim().toUpperCase();  // "JANE M."
+char firstLetter = cleaned.charAt(0);        // 'J'
+boolean endsWithT = cleaned.endsWith("M.");  // true
+
+
+
+🔁 Concatenation and Performance
+| Technique       | Time Complexity | Use Case                                    |
+| --------------- | --------------- | ------------------------------------------- |
+| `s1 + s2`       | O(n) + O(m)     | Fine for small numbers of strings           |
+| `+=` in a loop  | ❌ O(n^2) total  | ❌ Avoid — creates many intermediate strings |
+| `StringBuilder` | ✅ O(n) total    | ✅ Use for building strings dynamically      |
+
+
+
+🧠 Pro Tips
+- Use .equals() not == to compare strings.
+- Use .toCharArray() or charAt(i) for char-level algorithms.
+- Use .substring() for slicing — avoid converting to array if unnecessary.
+- Convert to StringBuilder if doing lots of mutation:
+
+StringBuilder sb = new StringBuilder(s);
+sb.setCharAt(0, 'Z');
+String result = sb.toString();
+
+
+
+✅ When to Use What
+| Task                        | Tool / Method                    |
+| --------------------------- | -------------------------------- |
+| Fast read-only substring    | `substring()`                    |
+| Modify characters in a loop | `StringBuilder` or `char[]`      |
+| Count characters            | `Map<Character, Integer>`        |
+| Efficient comparison        | `equals()`, `startsWith()`, etc. |
+| Split words                 | `split(" ")`, `split("\\s+")`    |
+| Search for a substring      | `indexOf()`, `contains()`        |

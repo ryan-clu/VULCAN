@@ -1,0 +1,50 @@
+🧠 In Java: Do “Native Array” and “Primitive Array” mean the same thing?
+
+
+
+✅ Short Answer:
+They overlap, but they're not exactly the same — though people often
+use the terms interchangeably in casual conversation.
+
+
+
+✅ int[] is both:
+- A native array — because it's the core, built-in array type in Java 
+(not a wrapper like ArrayList).
+- A primitive array — because it stores primitive values (int, not Integer)
+
+
+
+🔍 Definitions:
+| Term                | Meaning                                                                                 |
+| ------------------- | --------------------------------------------------------------------------------------- |
+| **Native Array**    | A **built-in array structure** using `[]`, e.g., `int[]`, `String[]`                    |
+| **Primitive Array** | A native array that holds **primitive data types** (`int`, `char`, etc.)                |
+| **Reference Array** | A native array that holds **objects** or reference types, e.g., `String[]`, `Integer[]` |
+
+
+
+
+✅ Examples
+| Declaration                               | Native Array? | Primitive Array? | Notes                           |
+| ----------------------------------------- | ------------- | ---------------- | ------------------------------- |
+| `int[] nums = new int[5];`                | ✅             | ✅                | Holds primitive ints            |
+| `char[] letters = {'a','b'}`              | ✅             | ✅                | Holds primitive chars           |
+| `String[] names = new String[3];`         | ✅             | ❌                | Holds reference (non-primitive) |
+| `Integer[] nums = new Integer[3];`        | ✅             | ❌                | Holds wrapper objects           |
+| `List<Integer> list = new ArrayList<>();` | ❌             | ❌                | Not a native array              |
+
+
+
+⚠ Why This Distinction Matters
+- Primitive arrays (int[], double[]) are more memory-efficient and faster — no boxing.
+- Reference arrays (Integer[], String[]) can store null values and use more memory 
+due to object overhead.
+- Many algorithms (especially in interviews) use primitive arrays for performance.
+
+
+
+✅ Summary
+🔹 int[] is a native array and a primitive array
+🔹 String[] is a native array but not a primitive array
+🔹 ArrayList or List<Integer> is not a native array at all

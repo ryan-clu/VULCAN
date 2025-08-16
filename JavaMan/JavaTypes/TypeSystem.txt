@@ -1,0 +1,59 @@
+🧠 Java Type System: Crash Course
+
+
+🔹 Java Has Two Main Categories of Types:
+| Category            | Also Known As             | Examples                                                  |
+| ------------------- | ------------------------- | --------------------------------------------------------- |
+| **Primitive Types** | **Value types**           | `int`, `char`, `boolean`, `double`, etc.                  |
+| **Reference Types** | **Objects / class types** | `String`, `Integer`, `int[]`, `ArrayList`, custom classes |
+
+
+
+🧱 1. Primitive Types (8 total)
+| Type      | Size   | Default  | Notes                |
+| --------- | ------ | -------- | -------------------- |
+| `byte`    | 8-bit  | 0        |                      |
+| `short`   | 16-bit | 0        |                      |
+| `int`     | 32-bit | 0        | Common integer type  |
+| `long`    | 64-bit | 0L       | Larger integers      |
+| `float`   | 32-bit | 0.0f     | Less precision       |
+| `double`  | 64-bit | 0.0      | Default for decimals |
+| `char`    | 16-bit | '\u0000' | Unicode characters   |
+| `boolean` | 1-bit  | false    | true/false           |
+
+🔒 Immutable, not objects, stored directly in stack memory or arrays.
+
+
+
+🧱 2. Reference Types
+| Example              | Notes                               |
+| -------------------- | ----------------------------------- |
+| `String`             | Immutable object                    |
+| `Integer`, `Double`  | Wrapper classes for primitives      |
+| `int[]`, `String[]`  | Native arrays — fixed-length        |
+| `ArrayList<Integer>` | Dynamic-size, resizable array class |
+| Custom classes       | Your own types                      |
+
+🌐 Stored as references to objects in heap memory.
+✅ Support methods, inheritance, interfaces, and nullability.
+
+
+
+✅ Diagram: Java Type System
+          +--------------------------+
+          |      Java Types          |
+          +--------------------------+
+               /                \
+     +----------------+   +--------------------+
+     | Primitive Types|   | Reference Types    |
+     +----------------+   +--------------------+
+     | int, char, etc |   | Arrays (e.g., int[])|
+                         | Classes (e.g., String) |
+                         | Interfaces             |
+                         | Collections (ArrayList)|
+                         | Custom Classes         |
+
+
+
+
+

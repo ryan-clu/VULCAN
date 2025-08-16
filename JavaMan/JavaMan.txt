@@ -1,0 +1,34 @@
+Suggested Crash Course Order (Tailored to You)
+Since you’re doing Java + algorithms, I recommend the following order:
+
+✅ List / ArrayList (core to everything)
+✅ Map / HashMap (for freq counters, lookups, memoization)
+✅ Stack & Queue (essential for recursion, BFS, DFS)
+✅ PriorityQueue (common in algo problems)
+✅ TreeMap / TreeSet (for sorted key-value or sorted sets)
+✅ LinkedList (not as useful in practice, but good to know)
+
+
+
+General Topics
+---
+- Generics
+- Autoboxing Unboxing
+
+Lists/ArrayLists
+---
+- Lists - general
+- ArrayLists - general
+- instantiating a general defined list... List.of()... etc...
+
+HashMaps
+---
+- Map (Collection) - general notes/understanding
+- HashMap - general notes/understanding
+  - Looping over a HashMap
+    - // for (Character key : wordCharFreq.keySet()) {};
+    - // for (Map.Entry<Character, Integer> entry : wordCharFreq.entrySet()) {};
+
+
+
+

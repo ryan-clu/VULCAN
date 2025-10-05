@@ -19,3 +19,8 @@ public class SumNumsRecursive {
     System.out.println(sumNumbersRecursive(List.of(123456789, 12345678, 1234567, 123456, 12345, 1234, 123, 12, 1, 0))); // -> 137174205
   }
 }
+
+/* Time & Space Complexity
+ * 
+ * Time: O(n^2), Space: O(n^2)
+ */

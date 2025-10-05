@@ -13,3 +13,8 @@ public class Factorial {
     System.out.println(factorial(0));
   }
 }
+
+/* Time & Space Complexity
+ * 
+ * Time: O(n), Space: O(n)
+ */

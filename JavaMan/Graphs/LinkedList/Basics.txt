@@ -1,0 +1,13 @@
+Linked List
+---
+
+Introduction
+- Linked lists are a type of data structure.
+- It is a type of graph.
+
+- Linked lists consists of "nodes".
+- Nodes are containers of information/data. Conceptually we think of them as circles.
+- Each node will point to/have a "next" node. The last node of a linked list
+will point to "null".
+- First node of a linked list is the "head".
+- Last node of a linked list is the "tail".

@@ -1,0 +1,11 @@
+Recursion
+---
+
+- Recursion is "a function calling itself"
+- Iterative is "calling loops"
+
+- Recursion is useful/can be useful for certain algorithm problems such as
+for linked lists, trees, graphs, and dynamic programming.
+
+- Anatomy of a Recursive function:
+(a) Base Case (b) Recursive Step

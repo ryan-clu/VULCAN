@@ -1,11 +1,21 @@
 Recursion
 ---
 
+Introduction
 - Recursion is "a function calling itself"
 - Iterative is "calling loops"
 
 - Recursion is useful/can be useful for certain algorithm problems such as
 for linked lists, trees, graphs, and dynamic programming.
 
-- Anatomy of a Recursive function:
-(a) Base Case (b) Recursive Step
+Anatomy of a Recursive function:
+(a) Base Case 
+(b) Recursive Step
+
+Time and Space Complexity
+- Have to consider the number of function (recursive) calls made.
+- Always 1+ function call for the base case O(n+1).
+- Recursive calls are tracked in your computer's memory. Each call 
+takes up space - on the call stack - they take up a stack frame.
+- Have to consider the time and space implications for operations
+performed in each recursive call as well. 

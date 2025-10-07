@@ -48,3 +48,9 @@ public class LinkedListFind {
 
   }
 }
+
+/* 
+ * Time: O(n)
+ * Space: O(1)
+ * 
+ */

@@ -1,0 +1,123 @@
+"NEGATIVE INFINITY / POSITIVE INFINITY VARIABLE"
+
+In Java you can initialize a double to negative infinity using the 
+constant from the standard library:
+
+double maxNum = Double.NEGATIVE_INFINITY;
+
+That comes from the Double wrapper class.
+
+For completeness:
+Double.NEGATIVE_INFINITY → -∞
+Double.POSITIVE_INFINITY → +∞
+Double.NaN → “Not a Number”
+
+You usually use NEGATIVE_INFINITY when you’re searching for a 
+maximum value (so any real number will replace it) and 
+POSITIVE_INFINITY when searching for a minimum.
+
+-----
+
+"SPLITTING A SENTENCE STRING VARIABLE"
+
+👍 — you can use the split() method from the String class in Java.
+
+Here’s a quick example:
+
+String sentence = "The quick brown fox jumps over the lazy dog";
+String[] words = sentence.split(" ");  // split on spaces
+
+for (String word : words) {
+    System.out.println(word);
+}
+
+This will break the sentence into an array of words, separated 
+by spaces.
+
+⚠️ One thing to watch out for: if your sentence might have multiple 
+spaces in a row, split(" ") will give you empty strings. 
+A safer approach is:
+
+String[] words = sentence.trim().split("\\s+");
+
+- trim() removes leading/trailing whitespace.
+- \\s+ is a regex that matches one or more whitespace characters (spaces, tabs, etc.).
+
+That way you’ll always get a clean array of words.
+
+-----
+
+"LIST<OBJECT> FOR COLLECTION OF STRING AND INTEGER"
+
+I'm doing an algorithm where I am to expected to generate and return a list of elements 
+that can either be an integer or a String. Can you explain why I am able to collect the 
+return elements in a list of type Objects? 
+
+List<Object> fizzBuzzGameReturn = new ArrayList<>();
+
+It's because of one of Java’s fundamentals: 
+everything (except primitives) extends Object.
+
+Here’s the breakdown:
+
+1. Object is the root of the class hierarchy
+
+In Java, every class ultimately inherits from java.lang.Object.
+That means String, Integer, Double, ArrayList, etc. are all subclasses of Object.
+
+2. Autoboxing for primitives
+int is a primitive, not an object.
+But when you put an int into a collection like ArrayList, Java autoboxes it into its wrapper class Integer.
+And since Integer is also an Object, it fits just fine into List<Object>.
+
+List<Object> list = new ArrayList<>();
+list.add(42);          // int → autoboxed to Integer → stored as Object
+list.add("Hello");     // String is already an Object
+
+3. Why this works for your fizzBuzzGame example
+
+List<Object> fizzBuzzGameReturn = new ArrayList<>();
+
+- You can add integers (become Integer) and strings directly.
+- When you later retrieve an element, you get an Object type, so you may need to cast it back to its original type if you want to use it as an Integer or String.
+
+
+⚠️ Tradeoff:
+Using List<Object> works, but it’s not type-safe — you lose compile-time checks.
+
+A more idiomatic approach for FizzBuzz (where each entry is either a number or "Fizz"/"Buzz"/"FizzBuzz") is to make the list of String:
+
+List<String> fizzBuzzGameReturn = new ArrayList<>();
+fizzBuzzGameReturn.add(Integer.toString(3));  // numbers converted to strings
+fizzBuzzGameReturn.add("Fizz");
+
+That way, every element is guaranteed to be a string, and you don’t have to cast later.
+
+-----
+
+"CASTING BACK FROM OBJECT TYPE"
+
+If I go with List<Object>, lets say I then loop over everything I collected. I would get Object type returns. If I wanted to cast something to either Integer or String how do I cast it back from the Object type?
+
+Exactly — if you store items in a List<Object>, when you pull them out they’re typed as Object. To get them back as their real type (Integer or String), you need to cast.
+
+List<Object> list = new ArrayList<>();
+list.add(42);         // autoboxed to Integer
+list.add("Fizz");     // String
+
+for (Object item : list) {
+    if (item instanceof Integer) {
+        Integer num = (Integer) item;  // cast back to Integer
+        System.out.println("Integer: " + num);
+    } else if (item instanceof String) {
+        String str = (String) item;    // cast back to String
+        System.out.println("String: " + str);
+    }
+}
+
+Key points:
+
+- instanceof checks the runtime type safely.
+- Casting is done like (TargetType) object.
+- If you cast without checking and it’s the wrong type, you’ll get a ClassCastException at runtime.
+

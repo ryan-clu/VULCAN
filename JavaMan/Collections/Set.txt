@@ -85,3 +85,6 @@ for (int num : nums) {
 - Use HashSet when you need uniqueness and fast lookup
 - No duplicates, no order, no indexing
 - Most important methods: add, contains, remove, size, for-each loop
+
+// RYAN
+Initializing HashSet with a given List

@@ -1,0 +1,213 @@
+Queue
+---
+
+For most real-world Java applications and algorithmic problems, you should use ArrayDeque 
+for both Stack and Queue behavior instead of Java’s older Stack or Queue implementations like LinkedList.
+
+Let’s dive into a comprehensive crash course on Queues in Java, focused on:
+
+1. ✅ What a Queue is
+2. ✅ Java’s main queue interfaces & classes
+3. ✅ ArrayDeque as the preferred implementation
+4. ✅ Common operations with time complexity
+5. ✅ BFS/DFS usage patterns
+6. ✅ Common pitfalls and best practices
+7. ✅ Interview use cases
+
+
+
+🧠 1. What is a Queue?
+
+A Queue is a First-In, First-Out (FIFO) data structure.
+
+- Elements are added at the rear
+- Elements are removed from the front
+
+Real-world analogies:
+
+- Print jobs
+- Customer service lines
+- Task scheduling
+
+
+
+⚙️ 2. Java's Queue Interfaces & Classes
+
+Java has a whole Queue hierarchy in java.util:
+
+| Interface / Class          | Description                                      |
+| -------------------------- | ------------------------------------------------ |
+| `Queue<E>`                 | Base FIFO interface                              |
+| `Deque<E>`                 | Double-ended queue — adds/removes from both ends |
+| `LinkedList<E>`            | Implements both `List` and `Deque`               |
+| `ArrayDeque<E>`            | ✅ Most efficient non-thread-safe queue           |
+| `PriorityQueue<E>`         | Min-heap behavior for priority-based queue       |
+| `ConcurrentLinkedQueue<E>` | Thread-safe queue for concurrency                |
+
+
+
+🧰 3. ArrayDeque — Your Go-To Queue (and Stack)
+
+✅ Why ArrayDeque<E>?
+
+- Fast O(1) time for adding/removing from both ends
+- No memory overhead like linked list nodes
+- No synchronization overhead (unlike Stack)
+
+✅ Use ArrayDeque for:
+
+- BFS (as a queue)
+- DFS (as a stack)
+- Sliding window, backtracking, etc.
+
+
+
+🛠️ 4. Common ArrayDeque Operations
+
+| Operation         | Code                                  | Time Complexity | Description                 |
+| ----------------- | ------------------------------------- | --------------- | --------------------------- |
+| Add to rear       | `queue.addLast(e)` / `queue.offer(e)` | O(1)            | Typical enqueue (BFS)       |
+| Remove from rear  | `queue.poll()` / `queue.remove()`     | O(1)            | Typical dequeue (BFS)       |
+| Peek front        | `queue.peek()`                        | O(1)            | Read front without removing |
+| Add to front      | `stack.push(e)` / `deque.addFirst(e)` | O(1)            | For stack behavior (DFS)    |
+| Remove from front | `stack.pop()` / `deque.removeFirst()` | O(1)            | Stack-style pop             |
+| Check empty       | `queue.isEmpty()`                     | O(1)            |                             |
+| Size              | `queue.size()`                        | O(1)            |                             |
+
+⚠️ Avoid null elements — ArrayDeque does not allow them.
+
+ArrayDeque implements both:
+- Deque<E> → double-ended queue (stack + queue)
+- Queue<E> → FIFO queue behavior
+
+🔷 Queue Operations (Queue / Deque interface)
+
+| Method Name | Valid? | Notes                                                                     |
+| ----------- | ------ | ------------------------------------------------------------------------- |
+| `add(e)`    | ✅      | Adds to tail, throws exception if capacity issues (rare for `ArrayDeque`) |
+| `offer(e)`  | ✅      | Adds to tail, returns `false` if it fails                                 |
+| `poll()`    | ✅      | Removes from head (queue-style), returns `null` if empty                  |
+| `remove()`  | ✅      | Removes from head, throws `NoSuchElementException` if empty               |
+| `peek()`    | ✅      | Peeks at head, returns `null` if empty                                    |
+| `element()` | ✅      | Peeks at head, throws `NoSuchElementException` if empty                   |
+
+🔷 Stack-like Operations (Deque interface)
+
+| Method Name     | Valid? | Notes                                               |
+| --------------- | ------ | --------------------------------------------------- |
+| `push(e)`       | ✅      | Same as `addFirst(e)` — adds to front (stack top)   |
+| `pop()`         | ✅      | Same as `removeFirst()` — removes from front        |
+| `peek()`        | ✅      | Peeks at front (stack top) — inherited from `Queue` |
+| `addFirst(e)`   | ✅      | Adds to front                                       |
+| `addLast(e)`    | ✅      | Adds to end                                         |
+| `removeFirst()` | ✅      | Removes from front, throws if empty                 |
+| `removeLast()`  | ✅      | Removes from end, throws if empty                   |
+| `peekFirst()`   | ✅      | Returns front or null if empty                      |
+| `peekLast()`    | ✅      | Returns end or null if empty                        |
+| `pollFirst()`   | ✅      | Removes front, returns null if empty                |
+| `pollLast()`    | ✅      | Removes end, returns null if empty                  |
+| `offerFirst(e)` | ✅      | Adds to front, returns false on failure             |
+| `offerLast(e)`  | ✅      | Adds to end, returns false on failure               |
+
+🔷 Invalid or Inapplicable Methods ❌
+
+| Method Name                           | Valid?                                                            | Explanation                                                   |
+| ------------------------------------- | ----------------------------------------------------------------- | ------------------------------------------------------------- |
+| `addFirst()` / `addLast()` on `Queue` | ❌                                                                 | Only available when using the **`Deque` interface** reference |
+| `contains(null)`                      | ❌ Safe to call, but `ArrayDeque` **does not allow null elements** |                                                               |
+| `add(null)`                           | ❌ Throws `NullPointerException`                                   |                                                               |
+
+🔧 Recommendation: Which Interface to Use
+
+You get access to different methods depending on which interface you reference your ArrayDeque as:
+
+🔹 Use Deque<E> when you want full stack + queue power:
+
+Deque<Integer> dq = new ArrayDeque<>();
+dq.addFirst(1);  // Stack-style
+dq.addLast(2);   // Queue-style
+
+🔹 Use Queue<E> when you want FIFO behavior only:
+
+Queue<Integer> q = new ArrayDeque<>();
+q.offer(1);      // Enqueue
+q.poll();        // Dequeue
+
+
+
+
+🔁 5. Queue Usage in BFS and DFS
+
+📗 DFS Using Deque as Stack:
+
+Deque<TreeNode> stack = new ArrayDeque<>();
+stack.push(root);
+
+while (!stack.isEmpty()) {
+    TreeNode current = stack.pop();
+    // Process node
+    if (current.right != null) stack.push(current.right);
+    if (current.left != null) stack.push(current.left);
+}
+
+📘 BFS Example (Level-Order Traversal):
+
+Queue<TreeNode> queue = new ArrayDeque<>();
+queue.offer(root);
+
+while (!queue.isEmpty()) {
+    TreeNode current = queue.poll();
+    // Process node
+    if (current.left != null) queue.offer(current.left);
+    if (current.right != null) queue.offer(current.right);
+}
+
+
+
+🔍 6. Common Pitfalls
+| Mistake                             | Fix / Explanation                                 |
+| ----------------------------------- | ------------------------------------------------- |
+| Using `LinkedList` for BFS          | ✅ Works, but `ArrayDeque` is faster               |
+| Using `Stack` for DFS               | ❌ Prefer `ArrayDeque` for performance             |
+| Using `queue.add()` over `.offer()` | `.add()` throws on full, `.offer()` returns false |
+| Forgetting to check `isEmpty()`     | Always check before `poll()` or `peek()`          |
+
+
+
+🔧 7. Use Case: Sliding Window Maximum
+
+Deque<Integer> deque = new ArrayDeque<>();
+
+for (int i = 0; i < nums.length; i++) {
+    while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
+        deque.pollLast(); // maintain decreasing order
+    }
+    deque.offerLast(i);
+
+    // remove elements outside window
+    if (deque.peekFirst() <= i - k) {
+        deque.pollFirst();
+    }
+
+    if (i >= k - 1) {
+        result.add(nums[deque.peekFirst()]);
+    }
+}
+
+
+
+✅ Summary: When to Use ArrayDeque
+
+| Use Case                   | Use               |
+| -------------------------- | ----------------- |
+| BFS / Level order          | `Queue<TreeNode>` |
+| DFS (iterative)            | `Deque<TreeNode>` |
+| Stack or Queue replacement | `ArrayDeque`      |
+| Sliding window / Monotonic | `Deque`           |
+
+
+✅ Final Tips
+
+- Prefer ArrayDeque over Stack and LinkedList unless you need threading or legacy support
+- Use Deque when you want both stack and queue behavior
+- Avoid PriorityQueue unless you’re managing priorities or min/max ordering

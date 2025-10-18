@@ -1,0 +1,133 @@
+Stack
+---
+
+In-depth crash course on the Stack data structure in Java, tailored for both real-world usage and algorithm/technical interview prep.
+
+We’ll cover:
+
+1. ✅ What a stack is (core concept)
+2. ✅ How to use stacks in Java
+3. ✅ Key methods with time complexities
+4. ✅ Common stack use cases in algorithms
+5. ✅ Alternatives and best practices
+
+
+
+🧱 1. What is a Stack?
+
+A stack is a Last-In, First-Out (LIFO) data structure. Think of it like a stack of plates:
+- Add to the top (push)
+- Remove from the top (pop)
+
+
+
+🧰 2. Stack in Java: How to Use It
+
+✅ Java’s Built-in Stack Class
+Java provides a built-in Stack<E> class in java.util, which extends Vector<E>. It's simple but a bit outdated (more on that later).
+
+import java.util.Stack;
+
+Stack<Integer> stack = new Stack<>();
+stack.push(10);
+stack.push(20);
+int top = stack.pop(); // 20
+
+
+
+🔑 3. Common Stack Methods (with Time Complexities)
+
+| Method             | Description                       | Time Complexity | Notes                                 |
+| ------------------ | --------------------------------- | --------------- | ------------------------------------- |
+| `push(E item)`     | Add item to top of stack          | O(1)            | Adds at end of backing array          |
+| `pop()`            | Remove and return top item        | O(1)            | Throws `EmptyStackException` if empty |
+| `peek()`           | Return top item without removing  | O(1)            | Also throws if empty                  |
+| `isEmpty()`        | Check if stack is empty           | O(1)            | Returns boolean                       |
+| `search(Object o)` | Returns 1-based position from top | O(n)            | Not commonly used in interviews       |
+| `size()`           | Get number of elements            | O(1)            | From `Vector`                         |
+
+✅ Example:
+                                                                                                                                                                                                                                                                                                                                                                                                    
+Stack<String> stack = new Stack<>();
+stack.push("apple");
+stack.push("banana");
+System.out.println(stack.peek()); // banana
+stack.pop();                      // removes banana
+System.out.println(stack.peek()); // apple
+
+
+
+🔄 4. Stack Use Cases in Algorithms
+
+| Pattern                     | Examples                              |
+| --------------------------- | ------------------------------------- |
+| **Balancing symbols**       | Valid parentheses (`()`, `{}`, `[]`)  |
+| **Backtracking**            | DFS traversal, undo operations        |
+| **Expression parsing**      | Infix → postfix, evaluation           |
+| **Monotonic stack**         | Next greater element, histogram area  |
+| **Function call tracking**  | Simulating recursion                  |
+| **Custom state management** | E.g. evaluating nested strings, paths |
+
+Interviewers love stack problems because they test stateful reasoning and control flow logic.
+
+
+
+🛠️ 5. Alternatives to Java's Stack
+
+Java’s Stack is thread-safe because it inherits from Vector, but this makes it heavier and not always ideal.
+
+✅ Recommended Alternative: Deque via ArrayDeque
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+Deque<Integer> stack = new ArrayDeque<>();
+stack.push(1);      // Add to top
+stack.pop();        // Remove from top
+stack.peek();       // Look at top
+
+| Feature     | `Stack`              | `ArrayDeque` (Deque)             |
+| ----------- | -------------------- | ---------------------------------|
+| Thread-safe | ✅ Yes (synchronized) | ❌ No (faster in single-thread)|
+| Backed by   | `Vector`             | Resizable array                  |
+| Performance | Slightly slower      | ✅ Faster                        |
+| Preferred?  | ❌ Outdated          | ✅ Modern alternative           |
+
+
+
+⚠️ 6. Common Pitfalls
+
+| Pitfall                            | Solution                               |
+| ---------------------------------- | -------------------------------------- |
+| `pop()` on empty stack             | Always check `isEmpty()` first         |
+| Confusing `push()` vs `add()`      | Use `push()` for stack semantics       |
+| Using `Stack` in multithreaded app | Consider using `ConcurrentLinkedDeque` |
+| Forgetting LIFO behavior           | Remember the last in is the first out  |
+
+
+
+🔍 7. Example Stack Interview Problems
+
+| Problem Name                     | Concept                    |
+| -------------------------------- | -------------------------- |
+| Valid Parentheses                | Stack match pairs          |
+| Min Stack                        | Track min with extra stack |
+| Daily Temperatures               | Monotonic stack            |
+| Largest Rectangle in Histogram   | Monotonic stack            |
+| Evaluate Reverse Polish Notation | Stack evaluation           |
+| Decode String                    | Stack of states            |
+
+
+
+✅ Summary
+| Topic               | Notes                                       |
+| ------------------- | ------------------------------------------- |
+| Java class          | `java.util.Stack<E>`                        |
+| Better alternative  | `Deque<E>` via `ArrayDeque`                 |
+| Common ops          | `push`, `pop`, `peek`, `isEmpty`            |
+| Time complexity     | All main operations are O(1)                |
+| Use cases           | Parsing, backtracking, balancing, monotonic |
+| Interview frequency | Very high — must-know category              |
+
+
+

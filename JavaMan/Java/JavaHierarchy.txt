@@ -1,0 +1,98 @@
+Java Hierarchy
+---
+
+Below is a “mental map” of Java’s collections hierarchy plus the major structures you’ll want to 
+know for day-to-day engineering and algorithm interviews.
+
+java.lang.Object
+└── java.util
+    ├─ Iterable<E>
+    │  └─ Collection<E>
+    │     ├─ List<E>
+    │     │  ├─ ArrayList<E>
+    │     │  ├─ LinkedList<E>           (also implements Deque<E>, Queue<E>)
+    │     │  ├─ Vector<E> [legacy]
+    │     │  │  └─ Stack<E> [legacy]
+    │     │  └─ CopyOnWriteArrayList<E> (concurrent)
+    │     │
+    │     ├─ Set<E>
+    │     │  ├─ HashSet<E>
+    │     │  │  └─ LinkedHashSet<E>
+    │     │  └─ SortedSet<E>
+    │     │     └─ NavigableSet<E>
+    │     │        └─ TreeSet<E>
+    │     │
+    │     ├─ Queue<E>
+    │     │  ├─ Deque<E>
+    │     │  │  ├─ ArrayDeque<E>
+    │     │  │  └─ LinkedList<E>        (also a List)
+    │     │  ├─ PriorityQueue<E>
+    │     │  └─ ConcurrentLinkedQueue<E> (concurrent)
+    │     │
+    │     └─ BlockingQueue<E> (java.util.concurrent)
+    │        ├─ ArrayBlockingQueue<E>
+    │        ├─ LinkedBlockingQueue<E>
+    │        ├─ PriorityBlockingQueue<E>
+    │        └─ DelayQueue<E>, SynchronousQueue<E>, etc.
+    │
+    └─ Map<K,V> (NOT a Collection)
+       ├─ HashMap<K,V>
+       │  └─ LinkedHashMap<K,V>
+       ├─ SortedMap<K,V>
+       │  └─ NavigableMap<K,V>
+       │     └─ TreeMap<K,V>
+       ├─ Hashtable<K,V> [legacy]
+       └─ ConcurrentHashMap<K,V> (concurrent)
+
+
+
+What each one “really is” (interview intuition)
+
+- ArrayList: dynamic array (contiguous memory). Great random access; resizing is occasional but amortized O(1) appends.
+- LinkedList: doubly linked list. Good for frequent middle insertions/removals with a known node/iterator; poor random access.
+- Vector / Stack: synchronized dynamic array / LIFO wrapper—legacy; prefer ArrayDeque for stacks.
+- HashSet / HashMap: hash table with buckets; average O(1) contains/get/put; Java 8+ treeifies deep buckets.
+- LinkedHashSet / LinkedHashMap: hash table + doubly linked list for predictable iteration order (insertion or access order → LRU patterns).
+- TreeSet / TreeMap: balanced BST (Red-Black Tree). Sorted keys; O(log n) for contains/get/put; supports range queries.
+- PriorityQueue: binary heap (min-heap). O(log n) push/pop; O(1) peek. No stable ordering guarantees beyond heap property.
+- ArrayDeque: resizable circular buffer; ideal stack (push/pop) and queue (offer/poll) with amortized O(1).
+- ConcurrentHashMap / ConcurrentLinkedQueue / CopyOnWriteArrayList: concurrent flavors for multi-threaded scenarios.
+- BlockingQueue family: producer–consumer building blocks (bounded/unbounded, priority, delays).
+
+
+
+Quick Big-O cheat sheet
+
+| Structure                |   Access |   Search |   Insert |   Remove | Notes                                         |
+| ------------------------ | -------: | -------: | -------: | -------: | --------------------------------------------- |
+| ArrayList                |     O(1) |     O(n) |    O(n)* |     O(n) | *Amortized O(1) add at end                    |
+| LinkedList               |     O(n) |     O(n) |   O(1)** |   O(1)** | **when you already have the node/iterator     |
+| HashSet / HashMap        |        — |    O(1)* |    O(1)* |    O(1)* | *Average; worst O(n), good hash funcs crucial |
+| LinkedHashMap            |        — |     O(1) |     O(1) |     O(1) | Predictable iteration order; LRU possible     |
+| TreeSet / TreeMap        | O(log n) | O(log n) | O(log n) | O(log n) | Sorted keys; ranges (ceiling/floor/subMap)    |
+| PriorityQueue            |        — |        — | O(log n) | O(log n) | `peek()` O(1)                                 |
+| ArrayDeque (stack/queue) |        — |        — |     O(1) |     O(1) | Amortized; avoid `null` elements              |
+| ConcurrentHashMap        |        — |     O(1) |     O(1) |     O(1) | High-throughput concurrency                   |
+| CopyOnWriteArrayList     |     O(1) |     O(n) |     O(n) |     O(n) | Reads fast, writes copy the array             |
+
+
+Ordering, equality, and comparators (common pitfalls)
+
+- Hash-based structures use equals() + hashCode(); define both consistently.
+- Tree-based structures use ordering (either Comparable or a Comparator)—ordering must be consistent with equals to avoid surprises.
+- LinkedHashMap can run in access-order mode to implement LRU caches (override removeEldestEntry).
+
+When to use what (fast heuristics)
+
+- Need a stack → ArrayDeque<E>
+- Need a queue → ArrayDeque<E> (simple) or LinkedList<E>; for priority → PriorityQueue<E>
+- Need unique items, no order → HashSet<E>
+- Need unique items, sorted → TreeSet<E>
+- Need key→value → HashMap<K,V>; ordered iteration → LinkedHashMap<K,V>; sorted keys → TreeMap<K,V>
+- Multi-threaded map with high throughput → ConcurrentHashMap<K,V>
+- Producer-consumer with backpressure → a BlockingQueue (e.g., ArrayBlockingQueue)
+
+Legacy vs modern (what interviewers expect)
+
+- Prefer ArrayDeque over Stack, HashMap over Hashtable, ArrayList over Vector.
+- Know that LinkedList is rarely faster than ArrayList unless you’re doing lots of iterator-based middle inserts/removes.
